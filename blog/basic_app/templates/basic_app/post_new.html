@@ -1,0 +1,25 @@
+{% extends 'basic_app/base.html' %}
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+
+<div class = "container">
+
+	<div class = "jumbotron" align = 'center'>
+
+		<h2 style = 'font-family: serif;'> Create Content </h2><br><br>
+
+		<form method = "post">
+
+			{% csrf_token %}
+			{{post.as_p}}
+
+			<button class = "btn btn-success">Create</button>	
+
+		</form>
+
+	</div>
+
+</div>
+
+{% endblock %}

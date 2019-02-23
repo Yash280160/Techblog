@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>{% block title %} {% endblock %}</title> 
+
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>	
+
+	<nav class = "navbar navbar-inverse">
+		<div class = "container-fluid">
+			<div class = "navbar-header">
+				<a class = "navbar-brand" href = "{% url 'index' %}">Tech Blog</a>
+			</div>
+
+			<ul class = "nav navbar-nav">
+				
+				
+				{% if user.is_authenticated %}
+
+					
+					<li class ="active"><a href = "#">Github</a></li>
+					<li class ="active"><a href = "#">LinkedIn</a></li>
+					<li class = "active"><a> Welcome {{request.user.username}}</a></li>
+					<li class = "active"><a href = "{% url 'post' %}"><span class="glyphicon glyphicon-plus"></span> Add Post</a></ul>
+
+				{% endif %}
+
+			</ul>
+
+			<ul class = "nav navbar-nav navbar-right">
+
+				{% if user.is_authenticated %}
+
+				<li><a href="{% url 'ques' %}">Read</a></li>
+				<li class = "active"><a href = "{% url 'logout' %}">Logout</a></li>
+
+				
+				{% else %}
+
+
+				<li><a href="{% url 'register' %}"><span class = "glyphicon glyphicon-user"></span> Register</a></li>
+				<li><a href="{% url 'login' %}"><span class = "glyphicon glyphicon-log-in"></span>Login</a></li>
+
+				{% endif %}
+
+
+				</ul>
+		</div>
+
+	</nav>
+
+{% block content %}
+
+<div class = "container">
+
+	<div class = "jumbotron" center = 'align'>
+
+		<h2 style = 'font-family: serif;' align= 'center'> You can start reading blogs by clicking on the read bar in the navbar</h2>
+
+	</div>
+
+</div>
+	
+{% endblock %}
+
+		
+</body>
+</html>

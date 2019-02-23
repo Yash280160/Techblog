@@ -1,0 +1,54 @@
+{% extends 'basic_app/base.html' %}
+
+{% block title %}Login Here{% endblock %}
+
+{% block content %}
+<div class = "container">
+
+	<div class = "jumbotron" align="center">
+
+		{% if messages %}
+
+		{% for message in messages %}
+
+			<ul>
+				
+				<li>{{ message }}</li>
+
+			</ul>
+
+			{% endfor %}
+
+		{% endif %}
+
+		<br><br><br>		
+
+		<h2>Login Here</h2><br><br>
+
+		<form method = "post" autocomplete="off">
+			{% csrf_token %}
+			<table>
+			
+			<tr>
+				<td><label for = "uname">Enter Username</label></td>
+				<td><input type = "text" name = "username" ></td>
+			</tr>
+
+			<tr>
+				<td><label for = "password">Enter Password</label></td>
+				<td><input type = "password" name = 'password'></td>
+
+			</tr>
+
+			</table>
+
+			<br><br>
+			<button class ="btn btn-success">Login</button>
+		</form>
+
+
+	</div>
+
+</div>
+
+{% endblock %}

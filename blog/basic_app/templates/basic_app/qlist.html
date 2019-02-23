@@ -1,6 +1,6 @@
 {% extends 'basic_app/base.html' %}
 
-{% block title %}Ask{% endblock %}
+{% block title %}Happy Blogging{% endblock %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
 		<ul>
 
 			
-			<li><h2><a href = "">{{question.title}}</a></h2></li>
+			<li><h2><a href = "{% url 'post_detail' pk=question.pk %}">{{question.title}}</a></h2></li>
 			<br>
 			<p>{{ question.text|linebreaksbr }}</p>
 			<p>{{ question.created_date }}</p>

@@ -1,6 +1,6 @@
 from .forms import CustomUserForm
 from django.contrib import messages
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import auth
 from .models import Ask
 from django.utils import timezone
@@ -65,6 +65,10 @@ def post(request):
 		
 
 	return render(request,'basic_app/post_new.html', {'post' : post})
+
+def post_detail(request,pk):
+	post = get_object_or_404(Ask,pk=pk)
+	return render(request, 'basic_app/post_detail.html', {'post' : post})
 
 
 

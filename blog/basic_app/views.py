@@ -5,6 +5,7 @@ from django.contrib import auth
 from .models import Ask,Comment
 from django.utils import timezone
 from basic_app.forms import PostForm,CommentForm
+from django.db.models import Q
 
 
 def register(request):
@@ -47,6 +48,11 @@ def logout(request):
 
 def questions_list(request):
 	ques = Ask.objects.filter(created_date__lte = timezone.now()).order_by('-created_date')
+
+	query = request.GET.get('q')
+	if query:
+		ques = ques.filter(title__icontains= query) 
+
 	return render(request, 'basic_app/qlist.html', {'ques' : ques})
 
 def post(request):

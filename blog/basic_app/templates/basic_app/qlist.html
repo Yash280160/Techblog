@@ -7,21 +7,18 @@
 <div class = "container">
 	<div class = "jumbotron">
 
-		<h2 align = 'center'>READ HERE!</h2><br><br>
-
-		
+		<h2 align = 'center'>READ HERE ! </h2><br><br>
 
 		{% for question in ques %}
+		
 		<ul>
 
-			
 			<li><h2><a href = "{% url 'post_detail' pk=question.pk %}">{{question.title}}</a></h2></li>
 			<br>
 			<p>{{ question.text|linebreaksbr }}</p>
 			<p>{{ question.created_date }}</p>
 		
-			
-		</ul>
+			</ul>
 
 		<hr>
 

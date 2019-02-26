@@ -1,0 +1,67 @@
+<marquee>
+
+Html attributes for marquue:
+
+behavior : alternate, slide, scroll
+scrollamount: Determines the speed of the movement of the text
+loop: how many times it will complete the cycle
+direction:
+bgcolor
+
+***********************************
+
+<ol type = 'i/square' start = '20'>
+
+<li>		Creating multi list that is list inside list
+	<ol>
+	<li></li>
+	</ol>
+	</li>
+<li></li>
+
+</ol>
+
+***********************************
+
+1) ML-Boston Housing Project
+2) Django-Blogging application
+
+<img src = "" alt = "" title = "" border = "">
+
+
+***********************************
+<center>
+<table border = "5px" cellspacing= "2px">  //cellspacing increases the border width.
+
+<tr>
+<th rowspan,colspan >Name</th>
+<th>Age</th>				
+<th>Class</th>
+</tr>
+
+<tr>
+<td>Ritik Jain</td>
+<td>18</td>
+<td>1st year 2nd sem</td>
+</tr>
+
+
+<tr>
+<td>Vedang Joshi</td>
+<td>18</td>
+<td>1st year 2nd sem</td>
+</tr>
+
+
+<tr>
+<td>Prakhar Chelawat</td>
+<td>18</td>
+<td>1st year 2nd sem</td>
+</tr>
+
+</table>
+</center>
+
+*******************************************
+
+&nbsp; for space

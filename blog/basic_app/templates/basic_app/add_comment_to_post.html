@@ -1,0 +1,28 @@
+{% extends 'basic_app/base.html' %}
+{% block title %}Add Comment{% endblock %}
+
+{% block content %}
+
+<div class = "container" align = "center">
+
+	<div class = "jumbotron" align = 'center'>
+
+	<h3>Add Comment Here ^_^ </h3>
+
+	<br><br>
+
+	<form method = "post">
+
+	{% csrf_token %}
+
+	{{ comment.as_p }}
+
+	<button class = "btn btn-success">Post</button>
+
+</form>
+
+	</div>
+
+</div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from basic_app.models import Ask
+from basic_app.models import Ask,Comment
 
 
 class CustomUserForm(forms.Form):
@@ -42,12 +42,17 @@ class CustomUserForm(forms.Form):
 
 			self.cleaned_data['username'],
 			self.cleaned_data['email'],
-			self.cleaned_data['password2']
+			self.cleaned_data['password2'],
 			)
 
 		return user
 
 class PostForm(forms.ModelForm):
-	class Meta:
+	class Meta():
 		model = Ask
 		fields = ('title', 'text',)
+
+class CommentForm(forms.ModelForm):
+	class Meta():
+		model = Comment
+		fields = ('text',)

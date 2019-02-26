@@ -12,14 +12,64 @@
 
 		{{post.created_date}}	
 
-		</div>
+	</div>
+		<hr>
 
 		<h2 style = 'font-family: sans-serif;'>{{post.title}}</h2>
 
 		<p>{{post.text|linebreaksbr}}</p>
 
+		<hr>
+
+		<p>Author : {{post.author}}</p>
+
+
+
 	</div>
 
-</div>
+	<div class = "jumbotron">
+
+		<div class ="comment">
+
+		<a class = "btn btn-danger" href = "{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a><br><hr><br>
+		{% if user.is_authenticated or comment.approved_comment %}
+
+		{% for comment in post.comments.all %}
+
+		{% if not comment.approved_comment %}
+
+			<a class = "btn btn-danger" href = '{% url "comment_remove" pk=comment.pk %}'><span class = "glyphicon glyphicon-remove"></span></a>
+
+			<a class = "btn btn-success" href="{% url 'comment_approve' pk=comment.pk %}"><span class = "glyphicon glyphicon-ok"></span></a>
+
+		{% endif %}
+		
+		<div class ="comment">
+			
+			<div class = "created_date" style = "position: absolute;left: 900px;">{{comment.created_date}}</div>
+		
+				<strong style = 'position: absolute;left : 750px;'>Author : {{comment.author}}</strong>
+				<h5>{{comment.text}}</h5>
+				
+				
+
+		</div>
+		<hr>
+
+		
+		{% empty %}
+	
+			<p>No comments here yet :( Add a comment ^_^</p>
+
+				{% endfor %}
+				{% endif %}
+				
+				<a style = "text-decoration: none;" >Total Comments : {{post.approved_comments.count}}</a>
+
+			</div>
+		</div>
+
+	</div>
+
 
 {% endblock %}

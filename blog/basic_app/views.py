@@ -51,7 +51,9 @@ def questions_list(request):
 
 	query = request.GET.get('q')
 	if query:
-		ques = ques.filter(title__icontains= query) 
+		ques = ques.filter(
+			Q(title__icontains= query) |
+			Q(text__icontains = query)).distinct() 
 
 	return render(request, 'basic_app/qlist.html', {'ques' : ques})
 

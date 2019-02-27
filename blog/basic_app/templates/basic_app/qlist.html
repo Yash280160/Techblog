@@ -26,7 +26,7 @@
 
 			<li><h2><a href = "{% url 'post_detail' pk=question.pk %}">{{question.title}}</a></h2></li>
 			<br>
-			<p>{{ question.text|linebreaksbr }}</p>
+			<p>{{ question.text|truncatechars:35 }}</p>
 			<p>{{ question.created_date }}</p>
 		
 			</ul>

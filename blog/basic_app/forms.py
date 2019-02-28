@@ -10,6 +10,8 @@ class CustomUserForm(forms.Form):
 	email = forms.EmailField(label = "Enter email")
 	password1 = forms.CharField(label = "Enter Password", widget = forms.PasswordInput, min_length= 8)
 	password2 = forms.CharField(label = "Confirm Password", widget = forms.PasswordInput, min_length= 8)
+	github_link = forms.CharField(label = "Your Github link")
+	linked_link = forms.CharField(label = "Your Linked-In link")
 
 	def clean_username(self):
 		username = self.cleaned_data['username'].lower()
@@ -43,9 +45,13 @@ class CustomUserForm(forms.Form):
 			self.cleaned_data['username'],
 			self.cleaned_data['email'],
 			self.cleaned_data['password2'],
+			self.cleaned_data['github_link'],
+			self.cleaned_data['linked_link'],
 			)
 
 		return user
+
+
 
 class PostForm(forms.ModelForm):
 	class Meta():

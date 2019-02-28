@@ -8,6 +8,7 @@ class Ask(models.Model):
 	title = models.CharField(max_length = 15)
 	text = models.TextField()
 	created_date = models.DateTimeField(default = timezone.now)
+	
 
 	def publish(self):
 		self.save()

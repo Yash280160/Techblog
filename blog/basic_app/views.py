@@ -1,11 +1,11 @@
 from .forms import CustomUserForm
-from django.contrib import messages
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import auth
 from .models import Ask,Comment
 from django.utils import timezone
 from basic_app.forms import PostForm,CommentForm
 from django.db.models import Q
+from django.contrib.auth.model import User
 
 
 def register(request):
@@ -14,7 +14,6 @@ def register(request):
 
 		if f.is_valid():
 			f.save()
-			messages.success(request,"User registered successfully!")
 			return redirect('login')
 
 	else:

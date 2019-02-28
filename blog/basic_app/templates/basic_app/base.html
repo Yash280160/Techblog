@@ -21,8 +21,8 @@
 				{% if user.is_authenticated %}
 
 					
-					<li class ="active"><a href = "#">Github</a></li>
-					<li class ="active"><a href = "#">LinkedIn</a></li>
+					<li class ="active"><a href = "{{request.user.github_link}}">Github</a></li>
+					<li class ="active"><a href = "{{request.user.linked_lin}}">LinkedIn</a></li>
 					<li class = "active"><a> Welcome {{request.user.username}}</a></li>
 					<li class = "active"><a href = "{% url 'post' %}"><span class="glyphicon glyphicon-plus"></span> Add Post</a></ul>
 

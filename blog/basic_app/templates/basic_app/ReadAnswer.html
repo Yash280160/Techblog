@@ -1,0 +1,23 @@
+{% extends 'basic_app/base.html' %}
+	{% block content %}
+
+	<div class = "container">
+		<div class = "jumbotron" align='left'>
+
+			<h2 align="center">Answer Here</h2>
+			<br><br>
+			{% if ques %}
+
+				{% for question in ques %}
+
+					<a href="{% url 'detail' pk=question.pk %}">{{question}}</h3>
+					<br>
+					<hr>
+					<br>
+				{% endfor %}
+			{% endif %}
+		</div>	
+	</div>
+
+
+	{% endblock %}

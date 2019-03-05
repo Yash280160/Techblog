@@ -1,0 +1,20 @@
+{% extends 'basic_app/base.html' %}
+
+{% block content %}
+
+
+<div class = "jumbotron" align="center">
+
+	<form method = "POST">
+
+		{% csrf_token %}
+		{{ AForm.as_p }}
+
+
+		<button class = 'btn btn-info'>Answer</button>
+
+	</form>
+
+</div>
+
+{% endblock %}

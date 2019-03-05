@@ -1,11 +1,12 @@
 from .forms import CustomUserForm
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import auth
-from .models import Ask,Comment
+from .models import Ask,Comment,Questions,Answers
 from django.utils import timezone
-from basic_app.forms import PostForm,CommentForm
+from basic_app.forms import PostForm,CommentForm,QuesForm,AnswerForm
 from django.db.models import Q
-from django.contrib.auth.model import User
+from django.contrib import messages
+
 
 
 def register(request):
@@ -56,6 +57,10 @@ def questions_list(request):
 
 	return render(request, 'basic_app/qlist.html', {'ques' : ques})
 
+def showQuestions(request):
+	ques = Questions.objects.filter(created_date__lte = timezone.now()).order_by('-created_date')
+	return render(request,'basic_app/ReadAnswer.html', {'ques' : ques})
+
 def post(request):
 
 	if request.method == 'POST':
@@ -78,6 +83,30 @@ def post_detail(request,pk):
 	post = get_object_or_404(Ask,pk=pk)
 
 	return render(request, 'basic_app/post_detail.html', {'post' : post})
+
+def detailed(request,pk):
+	q = get_object_or_404(Questions,pk=pk)
+	answer = Answers.objects.filter(created_date__lte = timezone.now()).order_by('-created_date')
+	return render(request,'basic_app/detail.html',{'q':q,'answer':answer})
+
+
+def askQuestion(request):
+	if request.method=='POST':
+		form = QuesForm(request.POST)
+
+		if form.is_valid():
+			question = form.save(commit=False)
+			question.author = request.user
+			question.created_date=timezone.now()
+			question.save()
+			return redirect('Answer')
+			
+
+	else:
+		question=QuesForm()
+
+	return render(request,'basic_app/QnA.html',{'form':question})
+
 
 def add_comment_to_post(request,pk):
 
@@ -102,6 +131,8 @@ def add_comment_to_post(request,pk):
 
 	return render(request, 'basic_app/add_comment_to_post.html', {'comment' : comment})
 
+
+
 def comment_approve(request, pk):
 	comment = get_object_or_404(Comment,pk=pk)
 	comment.approve()
@@ -112,6 +143,30 @@ def comment_remove(request, pk):
 	comment = get_object_or_404(Comment,pk=pk)
 	comment.delete()
 	return redirect('post_detail', pk=comment.post.pk)
+
+def answer_form(request,pk):
+	question = get_object_or_404(Questions,pk=pk)
+
+	if request.method == 'POST':
+		form = AnswerForm(request.POST)
+
+		if form.is_valid():
+			ans = form.save(commit=False)
+			ans.created_date = timezone.now()
+			ans.author = request.user 
+			ans.question = question
+			ans.save()
+
+			return redirect('detail',pk=question.pk)
+
+	else:
+		ans = AnswerForm()
+
+
+	return render(request,'basic_app/answer.html', {'AForm':ans} )
+
+
+
 
 
 

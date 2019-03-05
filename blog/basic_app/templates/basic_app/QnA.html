@@ -1,0 +1,25 @@
+{% extends 'basic_app/base.html' %}
+
+{% block content %}
+
+<div class = "container">
+	<div class = "jumbotron" align='center'>
+
+		<h2 align='center'>Ask Here</h2>
+		<br>
+
+		<form method="POST">
+
+			{% csrf_token %}
+			{{form.as_p}}
+
+			<button class ="btn btn-success">ASK</button>
+
+		</form>
+		<hr>
+
+	</div>
+</div>
+
+
+{% endblock %}

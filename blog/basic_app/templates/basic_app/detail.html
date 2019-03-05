@@ -1,0 +1,45 @@
+{% extends 'basic_app/base.html' %}
+	{% block content %}
+
+	<div class = 'container-fluid'>	
+		<div class = "jumbotron">
+
+			<h3 align='center'>{{q}}</h3>
+			<br>
+		</div>
+	</div>	
+
+	<div class = 'container'>
+		<div class = 'jumbotron'>
+
+			<h2>Answers</h2>
+			<br>
+			<h3><a href = "{% url 'answer' pk=q.pk %}">Add Answer</a>
+
+
+		</div>	
+	</div>
+
+	<div class = "container">
+		<div class = "jumbotron">
+
+		{% if answer %}	
+			{% for ans in q.an.all %}
+			<h4>Answered By : {{request.user}}</h4>
+			<h5 align='justify'>{{ans}}</h5>
+			<br>
+			<hr>
+			<br>
+
+			{% endfor %}
+
+		{% else %}
+
+		<h3 align="center">No answers yet!Be the first one to answer!</h3>
+		{% endif %}
+
+		</div>
+	</div>
+
+
+	{% endblock %}
